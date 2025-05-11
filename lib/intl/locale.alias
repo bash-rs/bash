@@ -41,8 +41,8 @@ dutch		nl_NL.ISO-8859-1
 eesti		et_EE.ISO-8859-1
 estonian	et_EE.ISO-8859-1
 finnish         fi_FI.ISO-8859-1
-français	fr_FR.ISO-8859-1
-french		fr_FR.ISO-8859-1
+français	fr_FR.UTF-8
+french		fr_FR.UTF-8
 galego		gl_ES.ISO-8859-1
 galician	gl_ES.ISO-8859-1
 german		de_DE.ISO-8859-1
