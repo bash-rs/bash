@@ -1,0 +1,56 @@
+name: Bash CI/CD in macOS
+
+on:
+  push:
+    branches:
+      - master # or main, or whichever branch you push to
+  pull_request:
+    branches:
+      - master # or main
+
+jobs:
+  build-and-test-macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Build Dependencies
+        # macOS usually has Xcode command-line tools (including make and clang) pre-installed.
+        # You might need to install specific dependencies using brew if Bash has them.
+        run: |
+          brew update
+
+      - name: Configure Bash
+        run: ./configure
+
+      - name: Build Bash
+        run: make -j$(sysctl -n hw.logicalcpu) # Use all logical CPUs on macOS
+
+      - name: Run Bash Test Suite and Capture Log
+        run: make test 2>&1 | tee test-results.log
+
+      - name: Check for Test Failures in Log
+        run: |
+          echo "Analyzing test-results.log for failure indicators..."
+          if grep -qE '^[0-9]+[cd][0-9]+|^< |^> ' test-results.log; then
+            echo "--- Test Failures Detected! ---"
+            echo "Diff output found in test-results.log. Please check the 'bash-test-log' artifact for details."
+            exit 1
+          else
+            echo "No test failures (diffs) detected."
+            exit 0
+          fi
+
+      - name: Upload Test Results Log (on failure or success)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bash-test-log-macos
+          path: test-results.log
+
+      - name: Test Summary
+        if: success()
+        run: |
+          echo "All Bash tests passed on macOS based on log analysis!"

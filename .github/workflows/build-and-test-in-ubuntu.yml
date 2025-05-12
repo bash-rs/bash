@@ -1,16 +1,16 @@
-name: Bash CI/CD
+name: Bash CI/CD in Ubuntu
 
 on:
   push:
     branches:
-      - master # or main, or whichever branch you push to
+      - master
   pull_request:
     branches:
-      - master # or main
+      - master
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest # Or macos-latest if you prefer to test on macOS
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -58,13 +58,11 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: bash-test-log
+          name: bash-test-log-ubuntu
           path: test-results.log
 
       - name: Test Summary
         # This step will only run if the 'Check for Test Failures in Log' step passed.
         if: success()
         run: |
-          echo "All Bash tests passed based on log analysis!"
-          # Optionally, you could parse the log for a "summary" if Bash's test suite provides one
-          # and print it here.
+          echo "All Bash tests passed on Ubuntu based on log analysis!"
