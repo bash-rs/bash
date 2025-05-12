@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  build-and-test:
+  build-and-test-ubuntu:
     runs-on: ubuntu-latest
 
     steps:
@@ -52,14 +52,6 @@ jobs:
             echo "No test failures (diffs) detected."
             exit 0 # Exit with zero code to pass the GitHub Actions step
           fi
-
-      - name: Upload Test Results Log (on failure or success)
-        # Always upload the log so you can inspect it, even if the tests failed.
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: bash-test-log-ubuntu
-          path: test-results.log
 
       - name: Test Summary
         # This step will only run if the 'Check for Test Failures in Log' step passed.
