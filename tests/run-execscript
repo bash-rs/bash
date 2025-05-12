@@ -23,4 +23,11 @@ echo "warning: produce diff output, please do not consider this a test failure" 
 echo "warning: if diff output differing only in the location of the bash" >&2
 echo "warning: binary appears, please do not consider this a test failure" >&2
 ${THIS_SH} ./execscript > ${BASH_TSTOUT} 2>&1
-diff ${BASH_TSTOUT} exec.right && rm -f ${BASH_TSTOUT}
+
+# Filter system-dependent lines
+sed -e '/^trap -- .*SIGPIPE$/d' \
+    -e '/^bash: cannot set terminal process group/d' \
+    -e '/^bash: no job control in this shell$/d' \
+    "${BASH_TSTOUT}" > "${BASH_TSTOUT}.filtered"
+
+diff "${BASH_TSTOUT}.filtered" exec.right && rm -f "${BASH_TSTOUT}" "${BASH_TSTOUT}.filtered"

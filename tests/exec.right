@@ -20,14 +20,14 @@ after exec1.sub: one two three
 126
 0
 this is bashenv
-trap -- 'echo EXIT' EXIT
 trap -- '' SIGTERM
+trap -- 'echo EXIT' EXIT
 trap -- 'echo USR1' SIGUSR1
 USR1
 ./exec3.sub: line 27: /tmp/bash-notthere: No such file or directory
 ./exec3.sub: after failed exec: 127
-trap -- 'echo EXIT' EXIT
 trap -- '' SIGTERM
+trap -- 'echo EXIT' EXIT
 trap -- 'echo USR1' SIGUSR1
 USR1
 EXIT
@@ -59,8 +59,11 @@ this is ohio-state
 1
 0
 1
+This is exec7
 testb
+This is exec8
 expand_aliases 	on
+This is exec9
 1
 1
 1
@@ -69,6 +72,7 @@ expand_aliases 	on
 0
 0
 0
+This is exec10
 /usr/local/bin:/usr/GNU/bin:/usr/bin:/bin:.
 cannot find cat in $TMPDIR
 cannot find cat with empty $PATH
@@ -76,6 +80,7 @@ PATH = /usr/local/bin:/usr/GNU/bin:/usr/bin:/bin:.
 cannot find cat in $TMPDIR with hash
 cannot find cat with empty $PATH with hash
 PATH = /usr/local/bin:/usr/GNU/bin:/usr/bin:/bin:.
+This is exec11
 trap -- 'echo foo $BASH_SUBSHELL' EXIT
 trap -- 'echo USR1 $BASHPID' SIGUSR1
 between
@@ -90,22 +95,33 @@ group pipeline: 1
 EXIT-group.1
 foo 0
 after
+This is exec12 false
 exit code: 1
+This is exec12 command false
 exit code: 1
+This is exec12 dollar FALSE
 exit code: 1
+This is exec12 notfound
 exit code: 1
+This is exec12 syntaxerror
 exit code: 1
+This is exec12 nosuchcommand
 exit code: 1
+This is execscript echo a && echo b && echo c
 a
 b
 c
+This is execscript echo A && echo B
 A
 B
+This is execscript echo c && echo d
 c
 d
+This is execscript echo c && echo d && echo e
 c
 d
 e
+This is exec13
 x1
 x1a
 x2
@@ -114,6 +130,7 @@ x2b
 x3
 x3a
 x3b
+This is exec14
 WORKS
 done
 WORKS

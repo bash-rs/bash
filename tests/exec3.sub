@@ -20,7 +20,7 @@ shopt -s execfail
 trap 'echo EXIT' EXIT 
 trap 'echo USR1' USR1
 trap '' TERM
-trap
+trap | sort
 
 kill -s USR1 $$		# should run the trap
 
@@ -29,7 +29,7 @@ exec /tmp/bash-notthere
 # make sure we're still around
 echo $0: after failed exec: $?
 
-trap
+trap | sort
 kill -s USR1 $$		# should run the trap
 kill -s TERM $$		# should still be ignored
 

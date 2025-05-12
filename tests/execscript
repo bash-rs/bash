@@ -106,13 +106,18 @@ ${THIS_SH} -c 'cat </dev/null | cat >/dev/null' >&-
 ${THIS_SH} ./exec6.sub
 
 # checks for properly deciding what constitutes an executable file
+echo "This is exec7"
 ${THIS_SH} ./exec7.sub
 
+echo "This is exec8"
 ${THIS_SH} -i ${PWD}/exec8.sub
 
+echo "This is exec9"
 ${THIS_SH} ./exec9.sub
 
+echo "This is exec10"
 ${THIS_SH} ./exec10.sub
+echo "This is exec11"
 ${THIS_SH} ./exec11.sub
 
 true | `echo true` &
@@ -140,21 +145,33 @@ fi
 
 # problem with undoing redirections before running exit trap through bash-4.3
 
+echo "This is exec12 false"
 ${THIS_SH} ./exec12.sub false	# function
+echo "This is exec12 command false"
 ${THIS_SH} ./exec12.sub command false
+echo "This is exec12 dollar FALSE"
 ${THIS_SH} ./exec12.sub $FALSE
 
+echo "This is exec12 notfound"
 ${THIS_SH} ./exec12.sub notfound
+echo "This is exec12 syntaxerror"
 ${THIS_SH} ./exec12.sub syntaxerror
+echo "This is exec12 nosuchcommand"
 ${THIS_SH} ./exec12.sub nosuchcommand
 
 # problem with fork optimization in bash-4.4-alpha
 
+echo "This is execscript echo a && echo b && echo c"
 $THIS_SH -c 'echo a && /bin/echo b && echo c'
+echo "This is execscript echo A && echo B"
 $THIS_SH -c 'echo A && /bin/echo B'
 
+echo "This is execscript echo c && echo d"
 $THIS_SH -c '/bin/echo c && echo d'
+echo "This is execscript echo c && echo d && echo e"
 $THIS_SH -c '/bin/echo c && /bin/echo d && echo e'
 
+echo "This is exec13"
 ${THIS_SH} ./exec13.sub
+echo "This is exec14"
 ${THIS_SH} ./exec14.sub
