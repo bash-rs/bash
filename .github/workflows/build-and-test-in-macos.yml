@@ -43,13 +43,6 @@ jobs:
             exit 0
           fi
 
-      - name: Upload Test Results Log (on failure or success)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: bash-test-log-macos
-          path: test-results.log
-
       - name: Test Summary
         if: success()
         run: |
