@@ -3,4 +3,9 @@ echo "warning: If output differing only in line numbers is produced, please" >&2
 echo "warning: do not consider this a test failure." >&2
 
 ${THIS_SH} ./trap.tests > ${BASH_TSTOUT} 2>&1
-diff ${BASH_TSTOUT} trap.right && rm -f ${BASH_TSTOUT}
+
+# Filter system-dependent lines
+sed -e '/^trap -- .*SIGPIPE$/d' \
+    "${BASH_TSTOUT}" > "${BASH_TSTOUT}.filtered"
+
+diff "${BASH_TSTOUT}.filtered" trap.right && rm -f "${BASH_TSTOUT}" "${BASH_TSTOUT}.filtered"
