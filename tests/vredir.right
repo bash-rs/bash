@@ -98,4 +98,3 @@ swizzle ()
     exec {stdin}<&${fd[0]}-;
     exec {stdout}>&${fd[1]}-
 }
-./vredir8.sub: line 12: $fd: Bad file descriptor
