@@ -1,0 +1,9 @@
+if [ -c /dev/tty ] && exec 3<> /dev/tty; then
+  exec 3>&-
+  ${THIS_SH} ./vredir8tty.sub > ${BASH_TSTOUT} 2>&1
+  diff ${BASH_TSTOUT} vredir8tty.right && rm -f ${BASH_TSTOUT}
+  exit 0
+else
+  echo "Skipping vredir8tty: /dev/tty not usable"
+  exit 0
+fi
