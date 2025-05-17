@@ -1,4 +1,4 @@
-if [ -c /dev/tty ] && exec 3<> /dev/tty; then
+if [ -c /dev/tty ] && (exec 3<> /dev/tty) 2>/dev/null; then
   exec 3>&-
   ${THIS_SH} ./vredir8tty.sub > ${BASH_TSTOUT} 2>&1
   diff ${BASH_TSTOUT} vredir8tty.right && rm -f ${BASH_TSTOUT}
