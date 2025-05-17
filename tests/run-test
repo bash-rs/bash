@@ -7,7 +7,7 @@ if [ -c /dev/tty ] && (exec 3<> /dev/tty) 2>/dev/null; then
   diff ${BASH_TSTOUT} test.right && rm -f ${BASH_TSTOUT}
 else
   echo "Skipping tty specific tests: /dev/tty not usable"
-  # ${THIS_SH} ./test-no-tty.tests >${BASH_TSTOUT} 2>&1
-  # diff ${BASH_TSTOUT} test-no-tty.right && rm -f ${BASH_TSTOUT}
+  ${THIS_SH} ./test-no-tty.tests >${BASH_TSTOUT} 2>&1
+  diff ${BASH_TSTOUT} test-no-tty.right && rm -f ${BASH_TSTOUT}
 fi
 
