@@ -45,7 +45,7 @@
 
 #include "shell.h"
 #include "pcomplete.h"
-#include "alias.h"
+#include "core_rs_alias.h"
 #include "bashline.h"
 #include "execute_cmd.h"
 #include "pathexp.h"

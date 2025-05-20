@@ -73,7 +73,7 @@
 #include <glob/glob.h>
 
 #if defined (ALIAS)
-#  include "alias.h"
+#  include "core_rs_alias.h"
 #endif
 
 #if defined (PROGRAMMABLE_COMPLETION)

@@ -56,7 +56,7 @@
 #include "input.h"
 #include "hashcmd.h"
 #include "pathexp.h"
-#include "alias.h"
+#include "core_rs_alias.h"
 #include "jobs.h"
 
 #include "version.h"

@@ -34,7 +34,7 @@
 #include "general.h"
 
 #if defined (ALIAS)
-#include "alias.h"
+#include "core_rs_alias.h"
 #endif
 
 /* Flags describing various things about a builtin. */

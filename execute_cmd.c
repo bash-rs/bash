@@ -95,7 +95,7 @@ extern int errno;
 #endif
 
 #if defined (ALIAS)
-#  include "alias.h"
+#  include "core_rs_alias.h"
 #endif
 
 #if defined (HISTORY)

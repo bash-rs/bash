@@ -75,7 +75,7 @@ extern int cleanup_dead_jobs PARAMS((void));
 #endif /* JOB_CONTROL */
 
 #if defined (ALIAS)
-#  include "alias.h"
+#  include "core_rs_alias.h"
 #else
 typedef void *alias_t;
 #endif /* ALIAS */
